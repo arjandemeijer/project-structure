@@ -15,3 +15,33 @@
 ```
 src/main.cpp:8 undefined reference to 'Parameters::Device()'
 ```
+
+# Solution
+Problem solved thanks to Discord :: [Brandon]
+- The problem seems to be the usage of namespace in the `device.cpp` file.
+
+Instead of:
+```
+#include "device.hpp"
+
+using namespace Parameters; 
+
+int Device() 
+{
+    return 42;
+}
+```
+
+Use:
+
+```
+#include "device.hpp"
+
+namespace Parameters
+{
+    int Device() 
+    {
+        return 42;
+    }
+}
+```
